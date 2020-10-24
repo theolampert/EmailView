@@ -4,6 +4,20 @@ import UIKit
 import MessageUI
 
 public struct EmailView: UIViewControllerRepresentable {
+    public init(
+        result: Binding<Result<MFMailComposeResult, Error>?>,
+        recipients: [String],
+        subject: String,
+        body: String,
+        attachements: [(Data, String)]
+    ) {
+        self._result = result
+        self.recipients = recipients
+        self.subject = subject
+        self.body = body
+        self.attachements = attachements
+    }
+    
     @Environment(\.presentationMode) var presentation
     @Binding var result: Result<MFMailComposeResult, Error>?
 
